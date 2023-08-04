@@ -30,7 +30,7 @@ from pydantic import BaseModel, Field
 
 # Set up initial configurations
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
-PINECONE_API_KEY, = os.environ['pc_api_key']
+PINECONE_API_KEY = os.environ['pc_api_key']
 PINECONE_ENVIRONMENT = os.environ['pc_env']
 index_name = os.environ['pc_index']
 
