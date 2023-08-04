@@ -139,6 +139,6 @@ if prompt := st.chat_input("Ask anything about learning sciences research!"):
             answers = print_answer_citations_sources(res)
             store_convo(st.session_state.messages[-1].content, answers, citations)
             st.write(citations)
-            st.write(answers)  # Display the assistant's answer
+            # st.write(answers)  # Display the assistant's answer
 
     st.session_state.messages.append(ChatMessage(role="assistant", content=answers))
