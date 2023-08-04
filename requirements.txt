@@ -7,4 +7,3 @@ tiktoken
 pinecone-client
 faiss-cpu
 pypdf
-dotenv
