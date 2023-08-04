@@ -101,7 +101,9 @@ def main():
     if "selected_option" not in st.session_state or st.session_state.selected_option != selected_option:
         st.session_state.selected_option = selected_option
         # Load the document if the selected option changes
-        df = pd.read_excel('r/merged_data02.xlsx')
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(current_dir, 'r', 'merged_data02.xlsx')
+        df = pd.read_excel(file_path)
         df = df.loc[:, ["author", "uri", "title", "text"]]
         dic = row_to_dict(df, selected_option)
         if dic is not None:
