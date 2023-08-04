@@ -15,8 +15,8 @@ import time
 from langchain import PromptTemplate
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import os
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 pc_api_key = os.environ['pc_api_key']
