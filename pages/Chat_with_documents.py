@@ -83,6 +83,9 @@ def row_to_dict(df, title):
 
 def main():
     st.title("📖 Chat with One Paper")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    xlsx_file_path = os.path.join(current_dir, 'r', 'merged_data02.xlsx')
+    txt_path =  os.path.join(current_dir, 'r', '1.txt')
 
     text_input = st.text_input("Write a title or topic to start:", value="")
     if "text_input" not in st.session_state or st.session_state.text_input != text_input:
@@ -101,13 +104,11 @@ def main():
     if "selected_option" not in st.session_state or st.session_state.selected_option != selected_option:
         st.session_state.selected_option = selected_option
         # Load the document if the selected option changes
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(current_dir, 'r', 'merged_data02.xlsx')
-        df = pd.read_excel(file_path)
+        df = pd.read_excel(xlsx_file_path)
         df = df.loc[:, ["author", "uri", "title", "text"]]
         dic = row_to_dict(df, selected_option)
         if dic is not None:
-            with open('r/1.txt', 'w', encoding="utf-8") as txt_file:
+            with open(txt_path, 'w', encoding="utf-8") as txt_file:
                 paper = dic['text']
                 txt_file.write(paper)
             st.session_state.dic = dic
@@ -117,7 +118,7 @@ def main():
     else:
         dic = st.session_state.dic
 
-    loader = TextLoader("r/1.txt")
+    loader = TextLoader(txt_path)
     documents = loader.load()
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=0, separators=[" ", ",", "\n"])
